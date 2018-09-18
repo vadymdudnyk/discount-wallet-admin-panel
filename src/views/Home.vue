@@ -14,6 +14,7 @@
                         value="true"
                         v-for="(item, i) in items"
                         :key="i"
+                        :to="item.link"
                 >
                     <v-list-tile-action>
                         <v-icon v-html="item.icon"></v-icon>
@@ -43,7 +44,7 @@
             <LogoutButton></LogoutButton>
         </v-toolbar>
         <v-content>
-            <HelloWorld/>
+            <router-view></router-view>
         </v-content>
         <v-footer :fixed="fixed" app>
             <span>&copy; 2017</span>
@@ -53,8 +54,9 @@
 
 <script>
     import AuthenticationButton from '../components/AuthenticationButton'
-    import HelloWorld from '../views/HelloWorld'
+    import HelloWorld from './Dashboard'
     import LogoutButton from "../components/LogoutButton";
+
     export default {
         name: 'home',
         components: {
@@ -67,10 +69,23 @@
                 clipped: false,
                 drawer: true,
                 fixed: false,
-                items: [{
-                    icon: 'bubble_chart',
-                    title: 'Inspire'
-                }],
+                items: [
+                    {
+                        icon: 'home',
+                        title: 'Home',
+                        link: '/home'
+                    },
+                    {
+                        icon: 'money',
+                        title: 'Business',
+                        link: '/home/business'
+                    },
+                    {
+                        icon: 'bubble_chart',
+                        title: 'Codes',
+                        link: '/home/codes'
+
+                    }],
                 miniVariant: false,
                 title: 'Vuetify.js'
             }

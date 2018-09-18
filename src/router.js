@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import LandingPage from './views/LandingPage'
 import Home from './views/Home'
+import Business from './views/Business'
+import Dashboard from './views/Dashboard'
+import Codes from './views/Codes'
 import store from './store'
 
 
@@ -37,6 +40,23 @@ export default new Router({
             name: 'home',
             component: Home,
             beforeEnter: isAuthenticated,
+            children: [
+                {
+                    path: '',
+                    name: 'dashboard',
+                    component: Dashboard,
+                },
+                {
+                    path: 'business',
+                    name: 'business',
+                    component: Business,
+                },
+                {
+                    path: 'codes',
+                    name: 'Codes',
+                    component: Codes,
+                }
+            ]
         }
     ]
 })
