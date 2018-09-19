@@ -1,10 +1,13 @@
 <template>
-    <h1>Business page</h1>
+    <BusinessList></BusinessList>
 </template>
 
 <script>
+    import BusinessList from "../components/business/BusinessList";
+
     export default {
-        name: "Business"
+        name: "Business",
+        components: {BusinessList}
     }
 </script>
 

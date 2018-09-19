@@ -22,11 +22,19 @@ function register(email, phoneNumber, password) {
                 return true;
             }
         }
-    )
+    );
+}
+
+function getBusinesses() {
+    return axios({
+        method: 'get',
+        url: url + '/businesses',
+    });
 }
 
 
 export default {
     login,
-    register
+    register,
+    getBusinesses
 }
