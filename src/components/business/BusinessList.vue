@@ -6,27 +6,17 @@
                         v-for="business in businesses"
                         :key="business.id">
                     <v-card>
-                        <v-card-title>
-                            {{business.businessName}}
-                        </v-card-title>
                         <v-container>
                             <v-layout column>
                                 <v-flex>
-                                    <v-text-field v-model="business.businessName" disabled label="Business name"></v-text-field>
+                                    <BusinessInfo v-bind:business="business"></BusinessInfo>
                                 </v-flex>
                                 <v-flex>
-                                    <v-text-field v-model="business.city" disabled label="City"></v-text-field>
+                                    <CampaignsList v-bind:business-id="business.id"></CampaignsList>
                                 </v-flex>
-                                <v-flex>
-                                    <v-text-field v-model="business.address" disabled label="Address"></v-text-field>
-                                </v-flex>
-                                <v-flex>
-                                    <v-text-field v-model="business.zipCode" disabled label="ZipCode"></v-text-field>
-                                </v-flex>
-                                Administrators:
-                                <v-flex v-for="administrator in business.administrator" :key="administrator.id">
-                                    <v-chip close>{{administrator.email}}</v-chip>
-                                </v-flex>
+                               <v-flex>
+                                   <Administrators v-bind:administrators="business.administrator"></Administrators>
+                               </v-flex>
                             </v-layout>
                         </v-container>
                     </v-card>
@@ -38,17 +28,19 @@
 
 <script>
     import {GET_BUSINESSES_REQUEST, UPDATE_BUSINESSES} from "../../store/modules/business";
+    import CampaignsList from "./CampaignsList";
+    import Administrators from "./Administrators";
+    import BusinessInfo from "./BusinessInfo";
 
     export default {
         name: "BusinessList",
+        components: {BusinessInfo, Administrators, CampaignsList},
         computed: {
             businesses: {
                 get() {
-                    console.log("Get");
                     return this.$store.state.business.businesses
                 },
                 set (value) {
-                    console.log("set");
                     this.$store.dispatch(UPDATE_BUSINESSES, value)
                 }
             }

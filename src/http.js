@@ -18,7 +18,7 @@ function register(email, phoneNumber, password) {
                 phoneNumber,
                 password
             },
-            validateStatus: (status) => {
+            validateStatus: () => {
                 return true;
             }
         }
@@ -32,9 +32,49 @@ function getBusinesses() {
     });
 }
 
+function getBusinessCampaigns(businessId) {
+    return axios({
+        method: 'get',
+        url: url + `/businesses/${businessId}/campaigns`
+    })
+}
+
+function createCampaign(businessId, campaignType, couponType, maxUsages, description, expirationTime) {
+    return axios({
+        method: 'post',
+        url: url+ `/businesses/${businessId}/campaigns`,
+        data: {
+            businessId,
+            campaignType,
+            couponType,
+            maxUsages,
+            description,
+            expirationTime
+        }
+    })
+}
+
+function getCouponTypes() {
+    return axios({
+        method:'get',
+        url: url + '/enums/coupon-types'
+    })
+}
+
+function getCampaignTypes() {
+    return axios({
+        method:'get',
+        url: url + '/enums/campaign-types'
+    })
+}
+
 
 export default {
     login,
     register,
-    getBusinesses
+    getBusinesses,
+    getBusinessCampaigns,
+    getCouponTypes,
+    getCampaignTypes,
+    createCampaign
 }

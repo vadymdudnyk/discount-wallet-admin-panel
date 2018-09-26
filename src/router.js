@@ -5,6 +5,7 @@ import Home from './views/Home'
 import Business from './views/Business'
 import Dashboard from './views/Dashboard'
 import Codes from './views/Codes'
+import Customers from './views/Customers'
 import store from './store'
 
 
@@ -50,6 +51,11 @@ export default new Router({
                     path: 'business',
                     name: 'business',
                     component: Business,
+                },
+                {
+                    path: 'customers',
+                    name: 'customers',
+                    component: Customers
                 },
                 {
                     path: 'codes',

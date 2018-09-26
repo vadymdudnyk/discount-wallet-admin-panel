@@ -1,5 +1,5 @@
 <template>
-    <v-app dark>
+    <v-app>
         <v-navigation-drawer
                 persistent
                 :mini-variant="miniVariant"
@@ -79,6 +79,11 @@
                         icon: 'money',
                         title: 'Business',
                         link: '/home/business'
+                    },
+                    {
+                        icon: 'people',
+                        title: 'Customers',
+                        link: '/home/customers'
                     },
                     {
                         icon: 'bubble_chart',
