@@ -68,6 +68,13 @@ function getCampaignTypes() {
     })
 }
 
+function getBusinessCustomers(businessId) {
+    return axios({
+        method:'get',
+        url: `${url}/businesses/${businessId}/customers`
+    })
+}
+
 
 export default {
     login,
@@ -76,5 +83,6 @@ export default {
     getBusinessCampaigns,
     getCouponTypes,
     getCampaignTypes,
-    createCampaign
+    createCampaign,
+    getBusinessCustomers
 }

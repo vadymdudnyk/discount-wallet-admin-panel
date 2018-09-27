@@ -56,6 +56,7 @@
     import AuthenticationButton from '../components/AuthenticationButton'
     import HelloWorld from './Dashboard'
     import LogoutButton from "../components/LogoutButton";
+    import {GET_BUSINESSES_REQUEST} from "../store/modules/business";
 
     export default {
         name: 'home',
@@ -92,8 +93,12 @@
 
                     }],
                 miniVariant: false,
-                title: 'Vuetify.js'
+                title: ''
             }
+        },
+        created() {
+            this.$store.dispatch(GET_BUSINESSES_REQUEST);
+
         }
     }
 </script>

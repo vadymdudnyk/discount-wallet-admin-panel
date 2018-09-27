@@ -14,9 +14,9 @@
                                 <v-flex>
                                     <CampaignsList v-bind:business-id="business.id"></CampaignsList>
                                 </v-flex>
-                               <v-flex>
-                                   <Administrators v-bind:administrators="business.administrator"></Administrators>
-                               </v-flex>
+                                <v-flex>
+                                    <Administrators v-bind:administrators="business.administrator"></Administrators>
+                                </v-flex>
                             </v-layout>
                         </v-container>
                     </v-card>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import {GET_BUSINESSES_REQUEST, UPDATE_BUSINESSES} from "../../store/modules/business";
+    import {UPDATE_BUSINESSES} from "../../store/modules/business";
     import CampaignsList from "./CampaignsList";
     import Administrators from "./Administrators";
     import BusinessInfo from "./BusinessInfo";
@@ -40,13 +40,10 @@
                 get() {
                     return this.$store.state.business.businesses
                 },
-                set (value) {
+                set(value) {
                     this.$store.dispatch(UPDATE_BUSINESSES, value)
                 }
             }
-        },
-        created() {
-            this.$store.dispatch(GET_BUSINESSES_REQUEST);
         }
     }
 </script>
