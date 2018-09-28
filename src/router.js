@@ -4,7 +4,7 @@ import LandingPage from './views/LandingPage'
 import Home from './views/Home'
 import Business from './views/Business'
 import Dashboard from './views/Dashboard'
-import Codes from './views/Codes'
+import Coupons from './views/Coupons'
 import Customers from './views/Customers'
 import store from './store'
 
@@ -38,7 +38,7 @@ export default new Router({
         },
         {
             path: '/home',
-            name: 'home',
+            name: '',
             component: Home,
             beforeEnter: isAuthenticated,
             children: [
@@ -58,9 +58,9 @@ export default new Router({
                     component: Customers
                 },
                 {
-                    path: 'codes',
+                    path: 'coupons',
                     name: 'Codes',
-                    component: Codes,
+                    component: Coupons,
                 }
             ]
         }

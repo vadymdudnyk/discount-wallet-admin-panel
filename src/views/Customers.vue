@@ -2,20 +2,7 @@
     <v-container>
         <v-layout column>
             <v-flex>
-                <!--Move to separate component and place in navigation bar-->
-                <v-select
-                        v-model="selectedBusiness"
-                        :items="$store.getters.businesses"
-                        item-text="businessName"
-                        item-value="id"
-                        @change="getBusinessCustomers"
-                        label="Select business"
-                        outline
-                ></v-select>
-            </v-flex>
-            <v-flex>
                 <v-data-table
-                        v-if="selectedBusiness != null"
                         :headers="headers"
                         :items="customers"
                         class="elevation-1"
@@ -40,7 +27,6 @@
         name: "Customers",
         data() {
             return {
-                selectedBusiness: null,
                 headers: [
                     {text: 'Id', align: 'left', value: 'id'},
                     {text: 'Email', align: 'left', value: 'email'},
@@ -51,13 +37,28 @@
                 customers: []
             }
         },
-        methods: {
-            getBusinessCustomers() {
-                http.getBusinessCustomers(this.selectedBusiness)
-                    .then(response => {
-                        this.customers = response.data;
-                    });
+        computed: {
+            selectedBusiness: function () {
+                return this.$store.getters.selectedBusiness;
             }
+        },
+        watch: {
+            selectedBusiness: function (businessId) {
+                this.getBusinessCustomers(businessId);
+            },
+        },
+        methods: {
+            getBusinessCustomers(businessId) {
+                if (businessId) {
+                    http.getBusinessCustomers(businessId)
+                        .then(response => {
+                            this.customers = response.data;
+                        });
+                }
+            }
+        },
+        created() {
+            this.getBusinessCustomers(this.selectedBusiness);
         }
     }
 </script>

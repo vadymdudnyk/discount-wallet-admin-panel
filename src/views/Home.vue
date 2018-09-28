@@ -40,6 +40,11 @@
                 <v-icon>remove</v-icon>
             </v-btn>
             <v-toolbar-title v-text="title"></v-toolbar-title>
+            <v-layout class="pt-3">
+                <v-flex sm4>
+                    <BusinessSelector></BusinessSelector>
+                </v-flex>
+            </v-layout>
             <v-spacer></v-spacer>
             <LogoutButton></LogoutButton>
         </v-toolbar>
@@ -57,10 +62,12 @@
     import HelloWorld from './Dashboard'
     import LogoutButton from "../components/LogoutButton";
     import {GET_BUSINESSES_REQUEST} from "../store/modules/business";
+    import BusinessSelector from "../components/business/BusinessSelector";
 
     export default {
         name: 'home',
         components: {
+            BusinessSelector,
             LogoutButton,
             AuthenticationButton,
             HelloWorld
@@ -88,8 +95,8 @@
                     },
                     {
                         icon: 'bubble_chart',
-                        title: 'Codes',
-                        link: '/home/codes'
+                        title: 'Coupons',
+                        link: '/home/coupons'
 
                     }],
                 miniVariant: false,

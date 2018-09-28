@@ -42,7 +42,7 @@ function getBusinessCampaigns(businessId) {
 function createCampaign(businessId, campaignType, couponType, maxUsages, description, expirationTime) {
     return axios({
         method: 'post',
-        url: url+ `/businesses/${businessId}/campaigns`,
+        url: url + `/businesses/${businessId}/campaigns`,
         data: {
             businessId,
             campaignType,
@@ -56,25 +56,32 @@ function createCampaign(businessId, campaignType, couponType, maxUsages, descrip
 
 function getCouponTypes() {
     return axios({
-        method:'get',
+        method: 'get',
         url: url + '/enums/coupon-types'
     })
 }
 
 function getCampaignTypes() {
     return axios({
-        method:'get',
+        method: 'get',
         url: url + '/enums/campaign-types'
     })
 }
 
 function getBusinessCustomers(businessId) {
     return axios({
-        method:'get',
+        method: 'get',
         url: `${url}/businesses/${businessId}/customers`
     })
 }
 
+function getBusinessCoupons(businessId) {
+    return axios({
+        method: 'get',
+        url: `${url}/businesses/${businessId}/coupons`
+
+    })
+}
 
 export default {
     login,
@@ -84,5 +91,6 @@ export default {
     getCouponTypes,
     getCampaignTypes,
     createCampaign,
-    getBusinessCustomers
+    getBusinessCustomers,
+    getBusinessCoupons
 }
