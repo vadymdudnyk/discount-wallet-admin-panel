@@ -61,7 +61,7 @@
     import AuthenticationButton from '../components/AuthenticationButton'
     import HelloWorld from './Dashboard'
     import LogoutButton from "../components/LogoutButton";
-    import {GET_BUSINESSES_REQUEST} from "../store/modules/business";
+    import {GET_BUSINESS_EVENTS, GET_BUSINESSES_REQUEST, GET_LOYALTY_CARD_POLICY} from "../store/modules/business";
     import BusinessSelector from "../components/business/BusinessSelector";
 
     export default {
@@ -89,6 +89,11 @@
                         link: '/home/business'
                     },
                     {
+                        icon: 'home',
+                        title: 'Configure Loyalty Cards',
+                        link: '/home/loyaltyCards'
+                    },
+                    {
                         icon: 'people',
                         title: 'Customers',
                         link: '/home/customers'
@@ -104,7 +109,11 @@
             }
         },
         created() {
-            this.$store.dispatch(GET_BUSINESSES_REQUEST);
+            this.$store.dispatch(GET_BUSINESSES_REQUEST)
+                .then(() => {
+                    this.$store.dispatch(GET_BUSINESS_EVENTS);
+                    this.$store.dispatch(GET_LOYALTY_CARD_POLICY);
+                });
 
         }
     }

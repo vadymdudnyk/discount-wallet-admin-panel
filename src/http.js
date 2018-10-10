@@ -83,6 +83,32 @@ function getBusinessCoupons(businessId) {
     })
 }
 
+function getBusinessEvents(businessId) {
+    return axios({
+        method: 'get',
+        url: `${url}/businesses/${businessId}/events`
+    })
+}
+
+function getLoyaltyCardPolicy(businessId) {
+    return axios({
+        method: 'get',
+        url: `${url}/businesses/${businessId}/loyaltyCardPolicy`
+    })
+}
+function updateLoyaltyCardPolicy({businessId, loyaltyCardPolicyId, maxStamps}) {
+    return axios({
+        method:'put',
+        url: `${url}/businesses/${businessId}/loyaltyCardPolicy`,
+        data: {
+            id: loyaltyCardPolicyId,
+            businessId,
+            maxStamps
+        }
+    })
+
+}
+
 export default {
     login,
     register,
@@ -92,5 +118,8 @@ export default {
     getCampaignTypes,
     createCampaign,
     getBusinessCustomers,
-    getBusinessCoupons
+    getBusinessCoupons,
+    getBusinessEvents,
+    getLoyaltyCardPolicy,
+    updateLoyaltyCardPolicy
 }

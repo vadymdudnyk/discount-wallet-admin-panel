@@ -6,6 +6,7 @@ import Business from './views/Business'
 import Dashboard from './views/Dashboard'
 import Coupons from './views/Coupons'
 import Customers from './views/Customers'
+import LoyaltyCards from './views/LoyaltyCards'
 import store from './store'
 
 
@@ -51,6 +52,11 @@ export default new Router({
                     path: 'business',
                     name: 'business',
                     component: Business,
+                },
+                {
+                    path: 'loyaltyCards',
+                    name: 'loyaltyCards',
+                    component: LoyaltyCards,
                 },
                 {
                     path: 'customers',
