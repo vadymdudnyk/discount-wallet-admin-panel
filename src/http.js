@@ -96,14 +96,16 @@ function getLoyaltyCardPolicy(businessId) {
         url: `${url}/businesses/${businessId}/loyaltyCardPolicy`
     })
 }
-function updateLoyaltyCardPolicy({businessId, loyaltyCardPolicyId, maxStamps}) {
+
+function updateLoyaltyCardPolicy({businessId, loyaltyCardPolicyId, maxStamps, maxStampsCollectedText}) {
     return axios({
-        method:'put',
+        method: 'put',
         url: `${url}/businesses/${businessId}/loyaltyCardPolicy`,
         data: {
             id: loyaltyCardPolicyId,
             businessId,
-            maxStamps
+            maxStamps,
+            maxStampsCollectedText
         }
     })
 

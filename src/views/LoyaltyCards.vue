@@ -17,6 +17,15 @@
                 ></v-text-field>
             </v-flex>
             <v-flex>
+                <v-text-field
+                        :disabled='!editing'
+                        :value="this.$store.getters.loyaltyCardPolicy.maxStampsCollectedText"
+                        @input="(maxStampsCollectedText) => this.maxStampsCollectedText = maxStampsCollectedText"
+                        label="Text"
+                        :outline="!editing"
+                ></v-text-field>
+            </v-flex>
+            <v-flex>
                 <v-btn color="purple" @click="editing=!editing">Edit</v-btn>
                 <v-btn v-if="editing" color="green" @click="updateLoyaltyCardPolicy">Save</v-btn>
             </v-flex>
@@ -32,12 +41,13 @@
         data() {
             return {
                 editing: false,
-                newMaxStamps: null
+                newMaxStamps: null,
+                newMaxStampsCollectedText:null,
             }
         },
         methods: {
             updateLoyaltyCardPolicy() {
-                this.$store.dispatch(UPDATE_LOYALTY_CARD_POLICY, this.newMaxStamps)
+                this.$store.dispatch(UPDATE_LOYALTY_CARD_POLICY, this.newMaxStamps, this.newMaxStampsCollectedText)
                     .then(() => {
                         this.editing = false
                     })

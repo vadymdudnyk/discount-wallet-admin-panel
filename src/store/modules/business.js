@@ -59,13 +59,14 @@ const actions = {
                 commit(GET_LOYALTY_CARD_POLICY, resp.data)
             })
     },
-    [UPDATE_LOYALTY_CARD_POLICY]: ({commit, dispatch}, maxStamps) => {
+    [UPDATE_LOYALTY_CARD_POLICY]: ({commit, dispatch}, maxStamps, maxStampsCollectedText) => {
         return new Promise((resolve, reject) => {
             commit(UPDATE_LOYALTY_CARD_POLICY);
             http.updateLoyaltyCardPolicy({
                 businessId: state.selectedBusinessId,
                 loyaltyCardPolicyId: state.loyaltyCardPolicy.id,
-                maxStamps
+                maxStamps,
+                maxStampsCollectedText
             })
                 .then(() => {
                     dispatch(GET_LOYALTY_CARD_POLICY);
